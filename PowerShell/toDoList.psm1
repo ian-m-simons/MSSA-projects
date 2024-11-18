@@ -1,19 +1,19 @@
-new-Item C:\Users\$Env:UserName\toDoList.txt
-attrib +h C:\Users\$Env:UserName\toDoList.txt
+new-Item $home\toDoList.txt
+attrib +h $home\toDoList.txt
 
 function Add-ToDo{
     param ([string]$newTask)
-    echo $newTask >> C:\Users\$Env:UserName\toDoList.txt
+    echo $newTask >> $home\toDoList.txt
 }
 
 function Print-ToDo{
-    Get-Content -Path C:\Users\$Env:UserName\toDoList.txt
+    Get-Content -Path $home\toDoList.txt
 }
 
 function Complete-TaskByName{
     param([string]$completedTask)
-    attrib -h C:\Users\$Env:UserName\toDoList.txt
-    $todoList = Get-Content -Path C:\Users\$Env:UserName\toDoList.txt
+    attrib -h $home\toDoList.txt
+    $todoList = Get-Content -Path $home\toDoList.txt
     $taskFound = $false
     $newList = @()
     if($todoList -is [array]){
@@ -37,21 +37,21 @@ function Complete-TaskByName{
             write-host $todoList
         }
         else{
-            remove-item C:\Users\$Env:UserName\toDoList.txt
+            remove-item $home\toDoList.txt
             for ($i = 0; $i -lt $newList.Length; $i++){
-                $newList[$i] >> C:\Users\$Env:UserName\toDOList.txt
+                $newList[$i] >> $home\toDOList.txt
             }
         }
         if ($newList.Length -eq 0){
-            new-Item C:\Users\$Env:UserName\toDoList.txt | out-null
+            new-Item $home\toDoList.txt | out-null
         }
-        attrib +h C:\Users\$Env:UserName\toDoList.txt
+        attrib +h $home\toDoList.txt
     }
     else{
         if ($completedTask -eq $todoList){
-            remove-Item C:\Users\$Env:UserName\toDoList.txt | out-null
-            new-Item C:\Users\$Env:UserName\toDoList.txt | out-null
-            attrib +h C:\Users\$Env:UserName\toDoList.txt
+            remove-Item $home\toDoList.txt | out-null
+            new-Item $home\toDoList.txt | out-null
+            attrib +h $home\toDoList.txt
         }
         else{
             write-host 'task not found, existing task is: '
