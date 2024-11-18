@@ -4,7 +4,7 @@
 #    set-Location "C:\Users\$Env:UserName\Downloads"
 #}
 while ($true){
-    Set-Location "C:\Users\ianms\Downloads"
+    Set-Location "C:\Users\$Env:UserName\Downloads"
     Get-ChildItem | forEach-Object {
         if(($_).Extension -eq ('.jpg' -or '.png')){
             Move-Item $_ C:\Users\ianms\Pictures
