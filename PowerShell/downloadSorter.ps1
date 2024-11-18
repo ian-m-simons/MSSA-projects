@@ -4,19 +4,19 @@
 #    set-Location "C:\Users\$Env:UserName\Downloads"
 #}
 while ($true){
-    Set-Location "C:\Users\$Env:UserName\Downloads"
+    Set-Location "$home\Downloads"
     Get-ChildItem | forEach-Object {
         if(($_).Extension -eq ('.jpg' -or '.png')){
-            Move-Item $_ C:\Users\ianms\Pictures
+            Move-Item $_ $home\Pictures
         }
         elseif (($_).Extension -eq ('.wav' -or '.mp4')){
-            Move-Item $_ C:\Users\ianms\Videos
+            Move-Item $_ $home\Videos
         }
         elseif(($_).Extension -eq '.mp3'){
-            Move-Item $_ C:\Users\ianms\Music
+            Move-Item $_ $home\Music
         }
         else{
-            Move-Item $_ C:\Users\ianms\Documents
+            Move-Item $_ $home\Documents
         }
     }
     Start-sleep -Seconds 5
