@@ -8,7 +8,7 @@ while ($true){
 	for ($i = 0; $i -lt $services.Length; $i++){
 		$currentService = $services[$i]
 		[string]$response = ping $currentService
-		if ($response -match "Destination host unreachable"){
+		if (($response -match "Destination host unreachable") -or ($response -match "timed out")){
 			write-host "$currentService appears to be down"
 			write-host "Press enter to dismiss alarm"
 			while($true){
