@@ -111,11 +111,25 @@ def decToHex(num):
     return solution
     
 
-def binToHex():
-    return 0
+def binToHex(binNum):
+    table = {"0000":"0", "0001":"1", "0010":"2", "0011":"3", "0100":"4", "0101":"5", "0110":"6", "0111":"7", "1000":"8", "1001":"9", "1010":"A", "1011":"B", "1100":"C", "1101":"D", "1110":"E", "1111":"F"}
+    stringBin = str(binNum)
+    solution = ""
+    while len(stringBin) % 4 != 0:
+        stringBin = "0" + stringBin
+    for i in range(0, len(stringBin), 4):
+        subString = stringBin[i:i+4]
+        solution += table[subString]
+    return solution
 
-def hexToBin():
-    return 0
+    
+
+def hexToBin(hexNum):
+    table = {"0":"0000", "1":"0001", "2":"0010", "3":"0011", "4":"0100", "5":"0101", "6":"0110", "7":"0111", "8":"1000", "9":"1001", "A":"1010", "B":"1011", "C":"1100", "D":"1101", "E":"1110", "F":"1111"}
+    solution = ""
+    for i in range(len(hexNum)):
+        solution += table[hexNum[i].upper()]
+    return solution
 
 #input verification functions
 def inputInt(prompt):
@@ -212,8 +226,7 @@ def main():
                 print("[ERROR] input may only be a binary number (1 or 0)")
                 num = inputInt("please enter a binary number: ")
                 BinVerified = verifyBin(num)
-            num = binToDec(num)
-            num = decToHex(num)
+            num = binToHex(num)
             print(num)
         elif choice == 6:
             num = input("please enter a hexadecimal number: ")
@@ -222,8 +235,7 @@ def main():
                 print("[ERROR] input may only contain 0-9 and A-F")
                 num = input("please enter a hexadecimal number: ")
                 correctHex = verifyHex(num)
-            num = hexToDec(num)
-            num = decToBin(num)
+            num = hexToBin(num)
             print(num)
         elif choice == 0:
             exit(0)
